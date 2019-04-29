@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimaryDark"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/id_icon_toolbar_start"
+            android:layout_width="@dimen/m_35dp"
+            android:layout_height="@dimen/m_35dp"
+            android:layout_gravity="left"
+            android:layout_marginRight="15dp" />
+
+        <TextView
+            android:id="@+id/id_title_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/m_20dp"
+            android:text="Wellcome Umrota Maker"
+            android:textColor="@color/colorWhite" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/id_icon_toolbar"
+            android:layout_width="@dimen/m_35dp"
+            android:layout_height="@dimen/m_35dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+</LinearLayout>

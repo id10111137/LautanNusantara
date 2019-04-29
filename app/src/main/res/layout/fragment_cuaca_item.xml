@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/id_icon_weather"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_noimage" />
+
+        <TextView
+            android:id="@+id/id_clouds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Kondisi Awal (Clouds)" />
+
+        <TextView
+            android:id="@+id/id_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Deskripsi Weather" />
+
+        <TextView
+            android:id="@+id/id_tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Tanggal" />
+
+    </LinearLayout>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperature"
+        android:textSize="@dimen/m_15dp"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperatur Saat Ini"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minimal Temperature"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_temp_min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max Temperature"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_temp_max"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tekanan Udara"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_pressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Permukaan Laut"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_sea_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bawah Laut"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_grnd_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m_10dp"
+        android:layout_marginTop="@dimen/m_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kecepatan Angin"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/id_wind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Example"
+            android:textSize="12dp" />
+    </LinearLayout>
+</LinearLayout>
+
+
+
+</LinearLayout>
