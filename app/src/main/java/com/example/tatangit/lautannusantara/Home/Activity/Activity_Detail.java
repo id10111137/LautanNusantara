@@ -53,6 +53,9 @@ public class Activity_Detail extends AppCompatActivity {
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
+    public String TabHostTitle_info;
+    public String TabHostTitle_History;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +71,20 @@ public class Activity_Detail extends AppCompatActivity {
         if (getIntent().getStringExtra("title") != null) {
             if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_pesisir")) {
                 mTitle.setText("Informasi Pesisir");
+                TabHostTitle_info = "Informasi Pesisir";
+                TabHostTitle_History = "History Data Pesisir";
             } else if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_kelautan")) {
                 mTitle.setText("Informasi Kelautan");
+                TabHostTitle_info = "Informasi Kelautan";
+                TabHostTitle_History = "History Data Kelautan";
             } else if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_lautlepas")) {
                 mTitle.setText("Informasi Laut Lepas");
+                TabHostTitle_info = "Informasi Laut Lepas";
+                TabHostTitle_History = "History Laut Lepas";
             } else if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_perairankhusus")) {
                 mTitle.setText("Informasi Perairan Khusus");
+                TabHostTitle_info = "Informasi Perairan Khusus";
+                TabHostTitle_History = "History Perairan Khusus";
             }
         } else {
             onBackPressed();
@@ -120,8 +131,8 @@ public class Activity_Detail extends AppCompatActivity {
          */
         tableLayout.setupWithViewPager(viewPager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Fragment_InfoLautan(), "Informasi");
-        adapter.addFragment(new Fragment_Cuaca(), "Suhu Udara");
+        adapter.addFragment(new Fragment_InfoLautan(), TabHostTitle_info);
+        adapter.addFragment(new Fragment_Cuaca(), TabHostTitle_History);
         viewPager.setAdapter(adapter);
     }
 

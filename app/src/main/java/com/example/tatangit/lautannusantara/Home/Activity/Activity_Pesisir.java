@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.ModelManager;
@@ -134,24 +135,7 @@ public class Activity_Pesisir extends AppCompatActivity implements OnMapReadyCal
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Bengkulu Provinsi").snippet("Indonesian, Bengkulu Provinsi"));
 
-        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                return null;
-            }
-        });
-
-        map.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
-            @Override
-            public void onCircleClick(Circle circle) {
-
-            }
-        });
+        map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(bengkulu, 17));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(bengkulu, 17));

@@ -1,5 +1,7 @@
 package com.example.tatangit.lautannusantara.Home.Activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.allyants.notifyme.NotifyMe;
+import com.example.tatangit.lautannusantara.Library.Notification.H_Notification;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.ModelManager;
@@ -40,6 +44,8 @@ public class Activity_Main extends AppCompatActivity {
     Toolbar toolbar;
     TextView mTitle;
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
+    MessageItemLogin messageItemLogin;
+    H_Notification h_notification;
 
     @BindView(R.id.slider)
     Slider slider;
@@ -51,7 +57,7 @@ public class Activity_Main extends AppCompatActivity {
     TextView id_email;
 
 
-    MessageItemLogin messageItemLogin;
+
 
 
     @Override
@@ -67,6 +73,7 @@ public class Activity_Main extends AppCompatActivity {
 
         interface_api = Utils.getSOService("p");
         messageItemLogin = ModelManager.getInstance(getApplicationContext()).getUser();
+        h_notification = new H_Notification();
 
         id_icon_toolbar_start = toolbar.findViewById(R.id.id_icon_toolbar_start);
         id_icon_toolbar_start.setImageDrawable(getApplication().getResources().getDrawable(R.drawable.ic_info));
@@ -83,6 +90,7 @@ public class Activity_Main extends AppCompatActivity {
         toolbar_iconView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                h_notification.eNotif(getApplicationContext(),"Logout","Lautan Nusantara","Terima Kasih Telah Berkunjung");
                 ModelManager.getInstance(getApplicationContext()).LogOut();
                 finish();
             }

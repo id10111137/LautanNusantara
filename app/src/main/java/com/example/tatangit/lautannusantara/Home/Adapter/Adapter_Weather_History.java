@@ -11,23 +11,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.ListItem;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ListItemHourly;
 import com.example.tatangit.lautannusantara.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class Adapter_Weather extends ArrayAdapter<ListItem> {
+public class Adapter_Weather_History extends ArrayAdapter<ListItemHourly> {
 
     private Context context;
-    private List<ListItem> dataSet = null;
-    private ArrayList<ListItem> originDataSet = null;
+    private List<ListItemHourly> dataSet = null;
+    private ArrayList<ListItemHourly> originDataSet = null;
     LayoutInflater inflater;
 
-    public Adapter_Weather(List<ListItem> data, Context context) {
+    public Adapter_Weather_History(List<ListItemHourly> data, Context context) {
         super(context, R.layout.fragment_cuaca_item, data);
         this.dataSet = data;
         this.context = context;
@@ -59,7 +58,7 @@ public class Adapter_Weather extends ArrayAdapter<ListItem> {
     }
 
     @Override
-    public ListItem getItem(int position) {
+    public ListItemHourly getItem(int position) {
         return dataSet.get(position);
     }
 
@@ -72,7 +71,7 @@ public class Adapter_Weather extends ArrayAdapter<ListItem> {
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        final ListItem dataModel = getItem(position);
+        final ListItemHourly dataModel = getItem(position);
         final ViewHolder viewHolder;
         final View result;
 

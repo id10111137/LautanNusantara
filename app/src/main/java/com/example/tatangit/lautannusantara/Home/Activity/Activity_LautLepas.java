@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
 import com.example.tatangit.lautannusantara.Home.Model.InfoWindowData;
 import com.example.tatangit.lautannusantara.Library.GoogleMaps.CustomInfoWindowGoogleMap;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
@@ -130,24 +131,7 @@ public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyC
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Bengkulu Provinsi").snippet("Indonesian, Bengkulu Provinsi"));
 
-        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                return null;
-            }
-        });
-
-        map.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
-            @Override
-            public void onCircleClick(Circle circle) {
-
-            }
-        });
+        map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(bengkulu, 17));
 
@@ -156,7 +140,7 @@ public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyC
     @OnClick(R.id.id_goLautanLepas)
     public void goLautLepas(){
         mIntent = new Intent(getApplicationContext(), Activity_Detail.class);
-        mIntent.putExtra("title", "activity_kelautan");
+        mIntent.putExtra("title", "activity_lautlepas");
         startActivity(mIntent);
         overridePendingTransition(R.anim.slide_up, R.anim.slide_dwon);
     }

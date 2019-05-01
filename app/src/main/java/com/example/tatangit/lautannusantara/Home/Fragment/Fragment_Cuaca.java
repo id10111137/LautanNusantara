@@ -12,14 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tatangit.lautannusantara.Home.Activity.Activity_Main;
-import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_Weather;
-import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.ListItem;
-import com.example.tatangit.lautannusantara.Library.OpenWeather.Response.ResponseOpenWeather;
+import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_Weather_History;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ListItemHourly;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ResponseHourly;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
-import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
-import com.example.tatangit.lautannusantara.Library.Retrofit.Model.ModelManager;
-import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils_Weather;
 import com.example.tatangit.lautannusantara.R;
 
@@ -43,7 +39,7 @@ public class Fragment_Cuaca extends Fragment {
     @BindView(R.id.id_lv_weather)
     ListView id_lv_weather;
 
-    Adapter_Weather adapter_weather;
+    Adapter_Weather_History adapter_weatherHistory;
     Interface_Api interface_api;
 
     public Fragment_Cuaca() {
@@ -62,17 +58,17 @@ public class Fragment_Cuaca extends Fragment {
 
 
     private void getWeather(){
-        interface_api.cWeather("-3.80044", "102.26554", "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseOpenWeather>() {
-            @Override
-            public void onResponse(Call<ResponseOpenWeather> call, Response<ResponseOpenWeather> response) {
 
-                Log.d("Tampilkan",""+response.toString());
+        interface_api.cWeatherHurly("-3.80044", "102.26554", "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseHourly>() {
+            @Override
+            public void onResponse(Call<ResponseHourly> call, Response<ResponseHourly> response) {
+                Log.d("Tampilkan", "" + response.toString());
                 if (response.code() == 200) {
-                    final List<ListItem> lItem = response.body().getList();
-                    Log.d("Tampilkan",""+lItem.toString());
-                    adapter_weather = new Adapter_Weather(lItem, getContext());
-                    adapter_weather.notifyDataSetChanged();
-                    id_lv_weather.setAdapter(adapter_weather);
+                    final List<ListItemHourly> lItem = response.body().getList();
+                    Log.d("Tampilkan", "" + lItem.toString());
+                    adapter_weatherHistory = new Adapter_Weather_History(lItem, getContext());
+                    adapter_weatherHistory.notifyDataSetChanged();
+                    id_lv_weather.setAdapter(adapter_weatherHistory);
 
                 } else {
                     Toast.makeText(getContext(), "Upps, Gagal Untuk Mengambil data dari Weather", Toast.LENGTH_SHORT).show();
@@ -80,8 +76,8 @@ public class Fragment_Cuaca extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseOpenWeather> call, Throwable t) {
-                Toast.makeText(getContext(), "Upps, Koneksi anda buruk", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ResponseHourly> call, Throwable t) {
+                Log.d("Tampilkan", "" + t.toString());
             }
         });
 

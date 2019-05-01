@@ -1,12 +1,12 @@
 package com.example.tatangit.lautannusantara.Library.Retrofit.Interface;
 
 
-import com.example.tatangit.lautannusantara.Library.OpenWeather.Response.ResponseOpenWeather;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.ResponseCurrent;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ResponseHourly;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Response.ResponseLogin;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Response.ResponseRegister;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -42,17 +42,16 @@ public interface Interface_Api {
             @Field("email_member") String email_member
     );
 
-//    @POST("/data/2.5")
-//    @FormUrlEncoded
-//    Call<ResponseOpenWeather> cWeather(
-//            @Field("lat") String lat,
-//            @Field("lon") String lon,
-//            @Field("APPID") String appid
-//    );
+    @GET("data/2.5/forecast/hourly")
+    Call<ResponseHourly> cWeatherHurly(@Query("lat") String lat,
+                                       @Query("lon") String lon,
+                                       @Query("APPID") String appid);
 
-    @GET("data/2.5/forecast")
-    Call<ResponseOpenWeather> cWeather(@Query("lat") String lat,
-                                   @Query("lon") String lon,
-                                   @Query("APPID") String appid);
+    @GET("data/2.5/weather")
+    Call<ResponseCurrent> cWeatherCurrent(@Query("lat") String lat,
+                                          @Query("lon") String lon,
+                                          @Query("APPID") String appid);
+
+
 
 }
