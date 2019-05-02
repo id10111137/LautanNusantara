@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.ButterKnife;
@@ -29,7 +31,7 @@ import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback {
+public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 
     Intent mIntent;
     SweetAlertDialog pDialog;
@@ -39,6 +41,7 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     TextView mTitle;
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
+    GoogleMap mMap;
 
 
     @Override
@@ -100,20 +103,34 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
 
 
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(final GoogleMap map) {
+        mMap = map;
+        mMap.setOnMapClickListener(this);
+        mMap.setOnMapLongClickListener(this);
+    }
 
-        map.getUiSettings().setZoomControlsEnabled(true);
-        map.setMinZoomPreference(11);
-
-        map.addMarker(new MarkerOptions()
-                .position(	new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu)
+    @Override
+    public void onMapClick(LatLng latLng) {
+        mMap.addMarker(new MarkerOptions()
+                .position(	new LatLng(latLng.latitude,latLng.longitude)
                 )
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
+    }
 
-        map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu), 17));
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        mMap.addMarker(new MarkerOptions()
+                .position(	new LatLng(latLng.latitude,latLng.longitude)
+                )
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
     }
 
     @OnClick(R.id.id_goKelautan)

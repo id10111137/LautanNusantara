@@ -51,6 +51,7 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.custom_infowindow, null);
         LatLng latLng = marker.getPosition();
+        Log.d("tampilkan",""+latLng.latitude);
 
         TextView tvLat = (TextView) v.findViewById(R.id.id_latitude);
         TextView tvLng = (TextView) v.findViewById(R.id.id_longtitude);

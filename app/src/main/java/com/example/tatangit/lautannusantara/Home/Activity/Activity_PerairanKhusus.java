@@ -43,7 +43,6 @@ public class Activity_PerairanKhusus extends AppCompatActivity implements OnMapR
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
 
-    private LatLng bengkulu = new LatLng(-3.80044, 102.26554);
 
 
 
