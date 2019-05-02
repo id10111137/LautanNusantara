@@ -131,7 +131,7 @@ public class Activity_Detail extends AppCompatActivity {
          */
         tableLayout.setupWithViewPager(viewPager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Fragment_InfoLautan(), TabHostTitle_info);
+//        adapter.addFragment(new Fragment_InfoLautan(), TabHostTitle_info);
         adapter.addFragment(new Fragment_Cuaca(), TabHostTitle_History);
         viewPager.setAdapter(adapter);
     }
