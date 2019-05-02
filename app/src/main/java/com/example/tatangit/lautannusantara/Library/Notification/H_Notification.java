@@ -4,7 +4,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 
-import com.allyants.notifyme.NotifyMe;
 import com.example.tatangit.lautannusantara.R;
 
 public class H_Notification {
