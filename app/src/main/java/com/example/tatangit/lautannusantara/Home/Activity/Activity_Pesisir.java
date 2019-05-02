@@ -115,30 +115,19 @@ public class Activity_Pesisir extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap map) {
 
+
         map.getUiSettings().setZoomControlsEnabled(true);
         map.setMinZoomPreference(11);
 
-
-
         map.addMarker(new MarkerOptions()
-                .position(bengkulu)
+                .position(	new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu)
+                )
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Bengkulu Provinsi").snippet("Indonesian, Bengkulu Provinsi"));
-        map.getUiSettings().setZoomControlsEnabled(true);
-        map.setMinZoomPreference(11);
-
-
-        map.addMarker(new MarkerOptions()
-                .position(bengkulu)
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Bengkulu Provinsi").snippet("Indonesian, Bengkulu Provinsi"));
+                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
 
         map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(bengkulu, 17));
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(bengkulu, 17));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu), 17));
     }
 
 

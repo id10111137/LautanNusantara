@@ -41,12 +41,6 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     MessageItemLogin messageItemLogin;
 
 
-    private LatLng bengkulu = new LatLng(-3.80044, 102.26554);
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,13 +106,14 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
         map.setMinZoomPreference(11);
 
         map.addMarker(new MarkerOptions()
-                .position(bengkulu)
+                .position(	new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu)
+                )
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Bengkulu Provinsi").snippet("Indonesian, Bengkulu Provinsi"));
+                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
 
         map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(bengkulu, 17));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu), 17));
     }
 
     @OnClick(R.id.id_goKelautan)
@@ -128,6 +123,4 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
         startActivity(mIntent);
         overridePendingTransition(R.anim.slide_up, R.anim.slide_dwon);
     }
-
-
 }
