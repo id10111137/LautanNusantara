@@ -24,18 +24,21 @@
             android:id="@+id/id_clouds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:hint="Kondisi Awal (Clouds)" />
 
         <TextView
             android:id="@+id/id_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:hint="Deskripsi Weather" />
 
         <TextView
             android:id="@+id/id_tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:hint="Tanggal" />
 
     </LinearLayout>
@@ -50,6 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Temperature"
         android:textSize="@dimen/m_15dp"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold" />
     <View
         android:layout_width="match_parent"
@@ -59,6 +63,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
         android:layout_marginLeft="@dimen/m_10dp"
         android:layout_marginTop="@dimen/m_5dp"
         android:orientation="horizontal">
@@ -66,6 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:text="Temperatur Saat Ini"
             android:textSize="12dp" />
 
@@ -74,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:textColor="@color/colorAccent"
             android:text="Example"
             android:textSize="12dp" />
     </LinearLayout>
@@ -88,6 +95,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:text="Minimal Temperature"
             android:textSize="12dp" />
 
@@ -96,6 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:textColor="@color/colorAccent"
             android:text="Example"
             android:textSize="12dp" />
     </LinearLayout>
@@ -111,12 +120,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Max Temperature"
+            android:textColor="@color/colorAccent"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/id_temp_max"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:gravity="right"
             android:text="Example"
             android:textSize="12dp" />
@@ -132,12 +143,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:text="Tekanan Udara"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/id_pressure"
             android:layout_width="match_parent"
+            android:textColor="@color/colorAccent"
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="Example"
@@ -155,12 +168,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Permukaan Laut"
+            android:textColor="@color/colorAccent"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/id_sea_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:gravity="right"
             android:text="Example"
             android:textSize="12dp" />
@@ -177,6 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bawah Laut"
+            android:textColor="@color/colorAccent"
             android:textSize="12dp" />
 
         <TextView
@@ -184,6 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:textColor="@color/colorAccent"
             android:text="Example"
             android:textSize="12dp" />
     </LinearLayout>
@@ -198,6 +215,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:text="Kecepatan Angin"
             android:textSize="12dp" />
 
@@ -206,6 +224,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:textColor="@color/colorAccent"
             android:text="Example"
             android:textSize="12dp" />
     </LinearLayout>

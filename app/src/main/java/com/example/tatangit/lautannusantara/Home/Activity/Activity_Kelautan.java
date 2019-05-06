@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.ResponseCurrent;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.WeatherItem;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.ModelManager;
@@ -22,16 +24,23 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
+public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback {
+//public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     Intent mIntent;
     SweetAlertDialog pDialog;
@@ -42,6 +51,15 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
     GoogleMap mMap;
+
+
+    private LatLng latLng1 = new LatLng(-2.566640, 108.148269);
+    private LatLng latLng2 = new LatLng(-2.540898, 108.423066);
+    private LatLng latLng3 = new LatLng(-2.725421, 108.494270);
+
+    private LatLng latLng4 = new LatLng(-2.889485, 108.514879);
+    private LatLng latLng5 = new LatLng(-3.052092, 108.477933);
+    private LatLng latLng6 = new LatLng(-3.168144, 108.416266);
 
 
     @Override
@@ -105,39 +123,15 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     @Override
     public void onMapReady(final GoogleMap map) {
         mMap = map;
-        mMap.setOnMapClickListener(this);
-        mMap.setOnMapLongClickListener(this);
-    }
 
-    @Override
-    public void onMapClick(LatLng latLng) {
         mMap.addMarker(new MarkerOptions()
-                .position(	new LatLng(latLng.latitude,latLng.longitude)
-                )
+                .position(latLng1)
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
-    }
+                .title("test").snippet("test"));
 
-    @Override
-    public void onMapLongClick(LatLng latLng) {
-        mMap.addMarker(new MarkerOptions()
-                .position(	new LatLng(latLng.latitude,latLng.longitude)
-                )
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
-    }
-
-    @OnClick(R.id.id_goKelautan)
-    public void goKelautan() {
-        mIntent = new Intent(getApplicationContext(), Activity_Detail.class);
-        mIntent.putExtra("title", "activity_kelautan");
-        startActivity(mIntent);
-        overridePendingTransition(R.anim.slide_up, R.anim.slide_dwon);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng1.latitude,latLng1.longitude), 17));
+        mMap.animateCamera(CameraUpdateFactory.zoomOut());
+        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
     }
 }

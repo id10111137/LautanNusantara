@@ -121,26 +121,26 @@ public class Activity_Pesisir extends AppCompatActivity implements OnMapReadyCal
 
     @Override
     public void onMapClick(LatLng latLng) {
-        mMap.addMarker(new MarkerOptions()
-                .position(	new LatLng(latLng.latitude,latLng.longitude)
-                )
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
+//        mMap.addMarker(new MarkerOptions()
+//                .position(	new LatLng(latLng.latitude,latLng.longitude)
+//                )
+//                .icon(BitmapDescriptorFactory
+//                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+//                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
     }
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        mMap.addMarker(new MarkerOptions()
-                .position(	new LatLng(latLng.latitude,latLng.longitude)
-                )
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
+//        mMap.addMarker(new MarkerOptions()
+//                .position(	new LatLng(latLng.latitude,latLng.longitude)
+//                )
+//                .icon(BitmapDescriptorFactory
+//                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+//                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
     }
 
     @OnClick(R.id.id_GoLihatPesisir)

@@ -133,7 +133,7 @@ public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyC
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
     }
 
@@ -145,7 +145,7 @@ public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyC
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
     }
 

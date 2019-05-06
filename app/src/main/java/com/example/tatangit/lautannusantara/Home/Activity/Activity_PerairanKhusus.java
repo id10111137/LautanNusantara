@@ -125,7 +125,7 @@ public class Activity_PerairanKhusus extends AppCompatActivity implements OnMapR
                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
 
-        map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+//        map.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(R.string.lat_bengkulu,R.string.lon_bengkulu), 17));
 
     }

@@ -14,7 +14,6 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,7 +21,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="470dp" />
+            android:layout_height="match_parent" />
 
         <View
             android:layout_width="match_parent"
@@ -30,24 +29,24 @@
             android:layout_weight="1" />
 
 
-        <LinearLayout
-            android:id="@+id/id_goKelautan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/bottom"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="5dp">
+        <!--<LinearLayout-->
+            <!--android:id="@+id/id_goKelautan"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:background="@drawable/bottom"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:padding="5dp">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Lihat Data Lengkap Kelautan"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/m_15dp" />
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:text="Lihat Data Lengkap Kelautan"-->
+                <!--android:textColor="@color/colorWhite"-->
+                <!--android:textSize="@dimen/m_15dp" />-->
+        <!--</LinearLayout>-->
 
 
     </LinearLayout>
