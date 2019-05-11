@@ -128,15 +128,15 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
                     pDialog.dismiss();
                     final List<MessageItemKordinat> lLogin = response.body().getMessage();
                     Log.d("Tampilkan",""+lLogin.toString());
-//                    for (int i = 0; i < lLogin.size(); i++) {
-//                        mMap.addMarker(new MarkerOptions()
-//                                .position(	new LatLng(Double.valueOf(lLogin.get(i).getLatitude()),Double.valueOf(lLogin.get(i).getLongtitude()))
-//                                )
-//                                .icon(BitmapDescriptorFactory
-//                                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-//                                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-//                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.valueOf(lLogin.get(i).getLatitude()),Double.valueOf(lLogin.get(i).getLongtitude())), 17));
-//                    }
+                    for (int i = 0; i < lLogin.size(); i++) {
+                        mMap.addMarker(new MarkerOptions()
+                                .position(	new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude()))
+                                )
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude())), 17));
+                    }
                 } else {
                     pDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Gagal Untuk Menghubungkan Ke Server", Toast.LENGTH_SHORT).show();
