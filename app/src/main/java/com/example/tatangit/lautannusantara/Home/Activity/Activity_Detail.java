@@ -3,11 +3,6 @@ package com.example.tatangit.lautannusantara.Home.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,22 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_Weather_History;
-import com.example.tatangit.lautannusantara.Home.Adapter.ViewPagerAdapter;
-import com.example.tatangit.lautannusantara.Home.Fragment.Fragment_Cuaca;
-import com.example.tatangit.lautannusantara.Home.Fragment.Fragment_InfoLautan;
 import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ListItemHourly;
 import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ResponseHourly;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.ModelManager;
-import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils_Weather;
 import com.example.tatangit.lautannusantara.R;
 import com.example.tatangit.lautannusantara.SignUp.Activity.Activity_Login;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

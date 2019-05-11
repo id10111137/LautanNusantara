@@ -4,7 +4,7 @@ import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface
 
 public class Utils {
 
-    public static final String BASE_URL = "http://apilautan.umrota.com/index.php/";
+    public static final String BASE_URL = "http://fisherebeltim.com/index.php/";
 
 
     public static Interface_Api getSOService(String p) {

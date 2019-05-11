@@ -41,8 +41,7 @@ public class Activity_Account extends AppCompatActivity {
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
 
-    @BindView(R.id.id_nama_member)
-    EditText id_nama_member;
+
     @BindView(R.id.id_username_member)
     EditText id_username_member;
     @BindView(R.id.id_password_member)
@@ -113,10 +112,9 @@ public class Activity_Account extends AppCompatActivity {
 
 
     private void goSetProfil(){
-        id_nama_member.setText(messageItemLogin.getNamaMember());
-        id_username_member.setText(messageItemLogin.getUsernameMember());
-        id_password_member.setText(messageItemLogin.getPasswordMember());
-        id_email_member.setText(messageItemLogin.getEmailMember());
+        id_username_member.setText(messageItemLogin.getUsername());
+        id_password_member.setText(messageItemLogin.getPassword());
+        id_email_member.setText(messageItemLogin.getEmail());
     }
 
 
@@ -125,10 +123,7 @@ public class Activity_Account extends AppCompatActivity {
     public void goChangeProfil() {
 
         pDialog.show();
-        if (id_nama_member.getText().toString().isEmpty()) {
-            pDialog.dismiss();
-            id_nama_member.setError("Sepertinya Nama Anda Belum Terisi");
-        } else if (id_username_member.getText().toString().isEmpty()) {
+        if (id_username_member.getText().toString().isEmpty()) {
             pDialog.dismiss();
             id_username_member.setError("Sepertinya Username Anda Belum Terisi");
         } else if (id_password_member.getText().toString().isEmpty()) {
@@ -139,26 +134,24 @@ public class Activity_Account extends AppCompatActivity {
             id_email_member.setError("Sepertinya Email Anda Belum Terisi");
         }else{
             Log.d("Tampilkan",
-                    "Nomor Member : "+messageItemLogin.getNomorMember()+
-            " Nama Member : "+id_nama_member.getText().toString()+
+                    "Nomor Member : "+messageItemLogin.getNoUser()+
             " Username : "+id_username_member.getText().toString()+
             " Password : "+id_password_member.getText().toString()+
             " Email : "+id_email_member.getText().toString());
 
             pDialog.dismiss();
-            interface_api.cProfil(messageItemLogin.getNomorMember(),id_nama_member.getText().toString(),id_username_member.getText().toString(),id_password_member.getText().toString(),id_email_member.getText().toString()).enqueue(new Callback<ResponseLogin>() {
+            interface_api.cProfil(messageItemLogin.getNoUser(),id_username_member.getText().toString(),id_password_member.getText().toString(),id_email_member.getText().toString()).enqueue(new Callback<ResponseLogin>() {
                 @Override
                 public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                     if (response.isSuccessful()) {
                         pDialog.dismiss();
                         final List<MessageItemLogin> lLogin = response.body().getMessage();
                         for (int i = 0; i < lLogin.size(); i++) {
-                            modelLogin = new MessageItemLogin(lLogin.get(i).getEmailMember(),
-                                    lLogin.get(i).getNomorMember(),
-                                    lLogin.get(i).getNamaMember(),
-                                    lLogin.get(i).getPasswordMember(),
-                                    lLogin.get(i).getUsernameMember(),
-                                    lLogin.get(i).getStatusMember());
+                            modelLogin = new MessageItemLogin(
+                                    lLogin.get(i).getNoUser(),
+                                    lLogin.get(i).getUsername(),
+                                    lLogin.get(i).getPassword(),
+                                    lLogin.get(i).getEmail());
                         }
 
                         ModelManager.getInstance(getApplicationContext()).UserLogin(modelLogin);

@@ -9,12 +9,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
-import com.example.tatangit.lautannusantara.Home.Model.InfoWindowData;
-import com.example.tatangit.lautannusantara.Library.GoogleMaps.CustomInfoWindowGoogleMap;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
+import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.ModelManager;
+import com.example.tatangit.lautannusantara.Library.Retrofit.Response.ResponseKordinat;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils;
 import com.example.tatangit.lautannusantara.R;
 import com.example.tatangit.lautannusantara.SignUp.Activity.Activity_Login;
@@ -23,15 +22,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 
@@ -41,6 +43,7 @@ public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyC
     Interface_Api interface_api;
     Toolbar toolbar;
     TextView mTitle;
+    MessageItemKordinat modelkordinat;
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
     GoogleMap mMap;
@@ -127,25 +130,68 @@ public class Activity_LautLepas extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void onMapClick(LatLng latLng) {
-        mMap.addMarker(new MarkerOptions()
-                .position(	new LatLng(latLng.latitude,latLng.longitude)
-                )
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+
+
+        interface_api.cKordinat().enqueue(new Callback<ResponseKordinat>() {
+            @Override
+            public void onResponse(Call<ResponseKordinat> call, Response<ResponseKordinat> response) {
+                if (response.isSuccessful()) {
+                    pDialog.dismiss();
+                    final List<MessageItemKordinat> lLogin = response.body().getMessage();
+                    for (int i = 0; i < lLogin.size(); i++) {
+                        mMap.addMarker(new MarkerOptions()
+                                .position(	new LatLng(Double.valueOf(lLogin.get(i).getLatitude()),Double.valueOf(lLogin.get(i).getLongtitude()))
+                                )
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+                    }
+                } else {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Gagal Untuk Menghubungkan Ke Server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseKordinat> call, Throwable t) {
+                pDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Ups, Gagal Koneksi Ke Jaringan", Toast.LENGTH_SHORT).show();
+            }
+        });
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
+
     }
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        mMap.addMarker(new MarkerOptions()
-                .position(	new LatLng(latLng.latitude,latLng.longitude)
-                )
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext()));
+
+        interface_api.cKordinat().enqueue(new Callback<ResponseKordinat>() {
+            @Override
+            public void onResponse(Call<ResponseKordinat> call, Response<ResponseKordinat> response) {
+                if (response.isSuccessful()) {
+                    pDialog.dismiss();
+                    final List<MessageItemKordinat> lLogin = response.body().getMessage();
+                    for (int i = 0; i < lLogin.size(); i++) {
+                        mMap.addMarker(new MarkerOptions()
+                                .position(	new LatLng(Double.valueOf(lLogin.get(i).getLatitude()),Double.valueOf(lLogin.get(i).getLongtitude()))
+                                )
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
+                    }
+                } else {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Gagal Untuk Menghubungkan Ke Server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseKordinat> call, Throwable t) {
+                pDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Ups, Gagal Koneksi Ke Jaringan", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 17));
     }
 

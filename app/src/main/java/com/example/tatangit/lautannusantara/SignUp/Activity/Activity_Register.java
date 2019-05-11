@@ -29,8 +29,6 @@ public class Activity_Register extends AppCompatActivity {
     SweetAlertDialog pDialog;
 
 
-    @BindView(R.id.id_fullname)
-    EditText id_fullname;
     @BindView(R.id.id_username)
     EditText id_username;
     @BindView(R.id.id_password)
@@ -65,10 +63,7 @@ public class Activity_Register extends AppCompatActivity {
     public void goSimpan() {
         pDialog.show();
 
-        if (id_fullname.getText().toString().isEmpty()) {
-            pDialog.dismiss();
-            id_fullname.setError("Sepertinya Nama Belum Terisi");
-        } else if (id_username.getText().toString().isEmpty()) {
+       if (id_username.getText().toString().isEmpty()) {
             pDialog.dismiss();
             id_username.setError("Sepertinya Username Belum Terisi");
         } else if (id_password.getText().toString().isEmpty()) {
@@ -85,7 +80,7 @@ public class Activity_Register extends AppCompatActivity {
             id_cpassword.setError("Sepertinya Password anda tidak sama");
         } else {
 
-            interface_api.RegisterMember(id_fullname.getText().toString(), id_username.getText().toString(), id_password.getText().toString(), id_email.getText().toString()).enqueue(new Callback<ResponseRegister>() {
+            interface_api.RegisterMember(id_username.getText().toString(), id_password.getText().toString(), id_email.getText().toString()).enqueue(new Callback<ResponseRegister>() {
                 @Override
                 public void onResponse(Call<ResponseRegister> call, Response<ResponseRegister> response) {
                     Log.d("Tampilkan", "" + response.message().toString());
@@ -117,7 +112,6 @@ public class Activity_Register extends AppCompatActivity {
 
 
     private void ResetData() {
-        id_fullname.setText(null);
         id_username.setText(null);
         id_password.setText(null);
         id_cpassword.setText(null);

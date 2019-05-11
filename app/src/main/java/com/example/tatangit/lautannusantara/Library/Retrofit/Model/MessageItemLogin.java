@@ -1,94 +1,59 @@
 package com.example.tatangit.lautannusantara.Library.Retrofit.Model;
 
-import com.google.gson.annotations.SerializedName;
-
 public class MessageItemLogin {
+	private String password;
 
-	public MessageItemLogin(String nomorMember, String namaMember, String usernameMember, String passwordMember,  String emailMember,  String statusMember) {
-		this.emailMember = emailMember;
-		this.nomorMember = nomorMember;
-		this.namaMember = namaMember;
-		this.passwordMember = passwordMember;
-		this.usernameMember = usernameMember;
-		this.statusMember = statusMember;
+	public MessageItemLogin(String noUser, String username, String password, String email) {
+		this.password = password;
+		this.noUser = noUser;
+		this.email = email;
+		this.username = username;
 	}
 
-	@SerializedName("email_member")
-	private String emailMember;
+	private String noUser;
+	private String email;
+	private String username;
 
-	@SerializedName("nomor_member")
-	private String nomorMember;
-
-	@SerializedName("nama_member")
-	private String namaMember;
-
-	@SerializedName("password_member")
-	private String passwordMember;
-
-	@SerializedName("username_member")
-	private String usernameMember;
-
-	@SerializedName("status_member")
-	private String statusMember;
-
-	public void setEmailMember(String emailMember){
-		this.emailMember = emailMember;
+	public void setPassword(String password){
+		this.password = password;
 	}
 
-	public String getEmailMember(){
-		return emailMember;
+	public String getPassword(){
+		return password;
 	}
 
-	public void setNomorMember(String nomorMember){
-		this.nomorMember = nomorMember;
+	public void setNoUser(String noUser){
+		this.noUser = noUser;
 	}
 
-	public String getNomorMember(){
-		return nomorMember;
+	public String getNoUser(){
+		return noUser;
 	}
 
-	public void setNamaMember(String namaMember){
-		this.namaMember = namaMember;
+	public void setEmail(String email){
+		this.email = email;
 	}
 
-	public String getNamaMember(){
-		return namaMember;
+	public String getEmail(){
+		return email;
 	}
 
-	public void setPasswordMember(String passwordMember){
-		this.passwordMember = passwordMember;
+	public void setUsername(String username){
+		this.username = username;
 	}
 
-	public String getPasswordMember(){
-		return passwordMember;
-	}
-
-	public void setUsernameMember(String usernameMember){
-		this.usernameMember = usernameMember;
-	}
-
-	public String getUsernameMember(){
-		return usernameMember;
-	}
-
-	public void setStatusMember(String statusMember){
-		this.statusMember = statusMember;
-	}
-
-	public String getStatusMember(){
-		return statusMember;
+	public String getUsername(){
+		return username;
 	}
 
 	@Override
  	public String toString(){
 		return 
 			"MessageItemLogin{" +
-			"email_member = '" + emailMember + '\'' + 
-			",nomor_member = '" + nomorMember + '\'' + 
-			",nama_member = '" + namaMember + '\'' + 
-			",password_member = '" + passwordMember + '\'' + 
-			",username_member = '" + usernameMember + '\'' + 
-			",status_member = '" + statusMember + '\'' + 
+			"password = '" + password + '\'' + 
+			",noUser = '" + noUser + '\'' + 
+			",email = '" + email + '\'' + 
+			",username = '" + username + '\'' + 
 			"}";
 		}
 }

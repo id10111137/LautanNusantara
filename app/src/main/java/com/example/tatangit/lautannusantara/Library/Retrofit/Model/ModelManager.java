@@ -28,29 +28,25 @@ public class ModelManager {
     public void UserLogin(MessageItemLogin modelUserItem) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LautanNusantara", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("nomor_member", modelUserItem.getNomorMember());
-        editor.putString("nama_member", modelUserItem.getNamaMember());
-        editor.putString("username_member", modelUserItem.getUsernameMember());
-        editor.putString("password_member", modelUserItem.getPasswordMember());
-        editor.putString("email_member", modelUserItem.getEmailMember());
-        editor.putString("status_member", modelUserItem.getStatusMember());
+        editor.putString("noUser", modelUserItem.getNoUser());
+        editor.putString("username", modelUserItem.getUsername());
+        editor.putString("password", modelUserItem.getPassword());
+        editor.putString("email", modelUserItem.getEmail());
         editor.apply();
     }
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LautanNusantara", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("nomor_member", null) != null;
+        return sharedPreferences.getString("noUser", null) != null;
     }
 
     public MessageItemLogin getUser() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LautanNusantara", Context.MODE_PRIVATE);
         return new MessageItemLogin(
-                sharedPreferences.getString("nomor_member", null),
-                sharedPreferences.getString("nama_member", null),
-                sharedPreferences.getString("username_member", null),
-                sharedPreferences.getString("password_member", null),
-                sharedPreferences.getString("email_member", null),
-                sharedPreferences.getString("status_member", null));
+                sharedPreferences.getString("noUser", null),
+                sharedPreferences.getString("username", null),
+                sharedPreferences.getString("password", null),
+                sharedPreferences.getString("email", null));
 
     }
 

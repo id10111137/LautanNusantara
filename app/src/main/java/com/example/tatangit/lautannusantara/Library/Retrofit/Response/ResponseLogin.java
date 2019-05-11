@@ -1,19 +1,12 @@
 package com.example.tatangit.lautannusantara.Library.Retrofit.Response;
 
+import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
+
 import java.util.List;
 
-import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
-import com.google.gson.annotations.SerializedName;
-
 public class ResponseLogin{
-
-	@SerializedName("code")
 	private int code;
-
-	@SerializedName("message")
 	private List<MessageItemLogin> message;
-
-	@SerializedName("status")
 	private String status;
 
 	public void setCode(int code){
