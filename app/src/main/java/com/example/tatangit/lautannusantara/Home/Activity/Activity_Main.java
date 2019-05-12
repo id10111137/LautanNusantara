@@ -74,7 +74,7 @@ public class Activity_Main extends AppCompatActivity {
         id_icon_toolbar_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mIntent = new Intent(getApplicationContext(), Activity_OpenSource.class);
+                mIntent = new Intent(getApplicationContext(), Activity_Account.class);
                 startActivity(mIntent);
             }
         });
@@ -136,41 +136,15 @@ public class Activity_Main extends AppCompatActivity {
         id_email.setText(messageItemLogin.getEmail());
     }
 
-
-    @OnClick(R.id.id_account)
-    public void goAccount() {
-        mIntent = new Intent(getApplicationContext(), Activity_Account.class);
-        startActivity(mIntent);
-    }
-
     @OnClick(R.id.id_calculator)
     public void goCalculator() {
         mIntent = new Intent(getApplicationContext(), Activity_Calculator.class);
         startActivity(mIntent);
     }
 
-    @OnClick(R.id.id_pesisir)
-    public void goPesisir() {
-        mIntent = new Intent(getApplicationContext(), Activity_Pesisir.class);
-        startActivity(mIntent);
-    }
-
     @OnClick(R.id.id_kelautan)
     public void goKelautan() {
         mIntent = new Intent(getApplicationContext(), Activity_Kelautan.class);
-        startActivity(mIntent);
-    }
-
-
-    @OnClick(R.id.id_laut_lepas)
-    public void goLutLepas() {
-        mIntent = new Intent(getApplicationContext(), Activity_LautLepas.class);
-        startActivity(mIntent);
-    }
-
-    @OnClick(R.id.id_perairan_khusus)
-    public void goPerairanKhusus() {
-        mIntent = new Intent(getApplicationContext(), Activity_PerairanKhusus.class);
         startActivity(mIntent);
     }
 
@@ -185,6 +159,5 @@ public class Activity_Main extends AppCompatActivity {
         mIntent = new Intent(getApplicationContext(), Activity_Satuan.class);
         startActivity(mIntent);
     }
-
 
 }

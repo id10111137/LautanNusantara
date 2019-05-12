@@ -61,11 +61,6 @@
 
 
         <activity
-            android:name=".Home.Activity.Activity_OpenSource"
-            android:label="Intro Label"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
             android:name=".Home.Activity.Activity_Account"
             android:label="Intro Label"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -82,21 +77,6 @@
 
         <activity
             android:name=".Home.Activity.Activity_Kelautan"
-            android:label="Intro Label"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".Home.Activity.Activity_LautLepas"
-            android:label="Intro Label"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".Home.Activity.Activity_PerairanKhusus"
-            android:label="Intro Label"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".Home.Activity.Activity_Pesisir"
             android:label="Intro Label"
             android:theme="@style/AppTheme.NoActionBar" />
 

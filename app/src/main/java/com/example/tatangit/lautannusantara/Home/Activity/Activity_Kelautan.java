@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
+import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.ResponseCurrent;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
@@ -25,7 +29,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,7 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback {
+public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback{
 //public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     Intent mIntent;
@@ -48,15 +54,8 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
     GoogleMap mMap;
+    View v;
 
-
-    private LatLng latLng1 = new LatLng(-2.566640, 108.148269);
-    private LatLng latLng2 = new LatLng(-2.540898, 108.423066);
-    private LatLng latLng3 = new LatLng(-2.725421, 108.494270);
-
-    private LatLng latLng4 = new LatLng(-2.889485, 108.514879);
-    private LatLng latLng5 = new LatLng(-3.052092, 108.477933);
-    private LatLng latLng6 = new LatLng(-3.168144, 108.416266);
 
 
     @Override
@@ -120,17 +119,15 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     @Override
     public void onMapReady(final GoogleMap map) {
         mMap = map;
-
         interface_api.cKordinat().enqueue(new Callback<ResponseKordinat>() {
             @Override
             public void onResponse(Call<ResponseKordinat> call, Response<ResponseKordinat> response) {
                 if (response.isSuccessful()) {
                     pDialog.dismiss();
                     final List<MessageItemKordinat> lLogin = response.body().getMessage();
-                    Log.d("Tampilkan",""+lLogin.toString());
                     for (int i = 0; i < lLogin.size(); i++) {
                         mMap.addMarker(new MarkerOptions()
-                                .position(	new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude()))
+                                .position(new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude()))
                                 )
                                 .icon(BitmapDescriptorFactory
                                         .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
@@ -149,7 +146,6 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
                 Toast.makeText(getApplicationContext(), "Ups, Gagal Koneksi Ke Jaringan", Toast.LENGTH_SHORT).show();
             }
         });
-
         mMap.animateCamera(CameraUpdateFactory.zoomOut());
         mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
     }

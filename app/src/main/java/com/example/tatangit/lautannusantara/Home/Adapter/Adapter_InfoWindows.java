@@ -90,6 +90,11 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
                     id_tempats = ""+response.body().getName();
 
 
+                    for(int i = 0; i<response.body().getWeather().size(); i++){
+                                id_icon_infowindowss =response.body().getWeather().get(i).getIcon();
+                            }
+
+
                 } else {
                     Toast.makeText(context, "Upps, Gagal Untuk Mengambil data dari Weather", Toast.LENGTH_SHORT).show();
                 }
@@ -121,7 +126,10 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
         id_kecepatan_angin.setText(id_kecepatan_angins);
         id_tempat.setText(id_tempats);
 
-        Picasso.get().load(String.valueOf(id_icon_infowindowss)).placeholder(R.drawable.ic_noimage).fit().into(id_icon_infowindows, new com.squareup.picasso.Callback() {
+        Log.d("Tampilkan",""+id_icon_infowindowss);
+
+
+        Picasso.get().load("http://openweathermap.org/img/w/"+id_icon_infowindowss+".png").placeholder(R.drawable.ic_noimage).fit().into(id_icon_infowindows, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
 
@@ -132,9 +140,6 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
 
             }
         });
-
-
-
 
 
         tvLat.setText("" + latLng.latitude);

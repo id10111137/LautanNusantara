@@ -42,23 +42,10 @@ public class Activity_Detail extends AppCompatActivity {
     TextView mTitle;
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
-//    ViewPagerAdapter adapter;
 
     @BindView(R.id.id_lv_weather)
     ListView id_lv_weather;
     Adapter_Weather_History adapter_weatherHistory;
-    String Lat;
-    String Lon;
-
-//    @BindView(R.id.tabs)
-//    TabLayout tableLayout;
-//
-//    @BindView(R.id.viewpager)
-//    ViewPager viewPager;
-
-//    public String TabHostTitle_info;
-//    public String TabHostTitle_History;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,31 +59,13 @@ public class Activity_Detail extends AppCompatActivity {
 
 
         if (getIntent().getStringExtra("title") != null) {
-            if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_pesisir")) {
-                mTitle.setText("Informasi Pesisir");
-//                TabHostTitle_info = "Informasi Pesisir";
-//                TabHostTitle_History = "History Data Pesisir";
-            } else if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_kelautan")) {
+            if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_kelautan")) {
                 mTitle.setText("Informasi Kelautan");
-//                TabHostTitle_info = "Informasi Kelautan";
-//                TabHostTitle_History = "History Data Kelautan";
-            } else if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_lautlepas")) {
-                mTitle.setText("Informasi Laut Lepas");
-//                TabHostTitle_info = "Informasi Laut Lepas";
-//                TabHostTitle_History = "History Laut Lepas";
-            } else if (getIntent().getStringExtra("title").equalsIgnoreCase("activity_perairankhusus")) {
-                mTitle.setText("Informasi Perairan Khusus");
-//                TabHostTitle_info = "Informasi Perairan Khusus";
-//                TabHostTitle_History = "History Perairan Khusus";
             }
         } else {
             onBackPressed();
             overridePendingTransition(R.anim.slide_up, R.anim.slide_dwon);
         }
-
-
-
-        Log.d("Tampilkan", " Latitude "+getIntent().getStringExtra("Latitude")+" Longtitude "+getIntent().getStringExtra("Longtitude"));
 
         interface_api = Utils_Weather.getWeather();
         messageItemLogin = ModelManager.getInstance(getApplicationContext()).getUser();
@@ -133,21 +102,11 @@ public class Activity_Detail extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        /*
-            tab host
-         */
-//        tableLayout.setupWithViewPager(viewPager);
-//        adapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new Fragment_InfoLautan(), TabHostTitle_info);
-//        adapter.addFragment(new Fragment_Cuaca(), TabHostTitle_History);
-//        viewPager.setAdapter(adapter);
-
         interface_api.cWeatherHurly(getIntent().getStringExtra("Latitude"), getIntent().getStringExtra("Longtitude"), "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseHourly>() {
             @Override
             public void onResponse(Call<ResponseHourly> call, Response<ResponseHourly> response) {
                 if (response.code() == 200) {
                     final List<ListItemHourly> lItem = response.body().getList();
-                    Log.d("Tampilkan", "" + lItem.toString());
                     adapter_weatherHistory = new Adapter_Weather_History(lItem, getApplicationContext());
                     adapter_weatherHistory.notifyDataSetChanged();
                     id_lv_weather.setAdapter(adapter_weatherHistory);
@@ -162,17 +121,5 @@ public class Activity_Detail extends AppCompatActivity {
                 Log.d("Tampilkan", "" + t.toString());
             }
         });
-
-
-
     }
-
-
-    private void getWeather(){
-
-
-
-    }
-
-
 }
