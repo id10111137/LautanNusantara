@@ -147,6 +147,8 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
             }
         });
         mMap.animateCamera(CameraUpdateFactory.zoomOut());
-        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
+//        mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
+
+
     }
 }
