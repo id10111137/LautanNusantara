@@ -125,7 +125,9 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
                 if (response.isSuccessful()) {
                     pDialog.dismiss();
                     final List<MessageItemKordinat> lLogin = response.body().getMessage();
+                    Log.d("Tampilkan",""+response.body().toString());
                     for (int i = 0; i < lLogin.size(); i++) {
+
                         mMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude()))
                                 )
