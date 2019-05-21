@@ -6,15 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
-import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.ResponseCurrent;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
@@ -23,16 +19,18 @@ import com.example.tatangit.lautannusantara.Library.Retrofit.Response.ResponseKo
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils;
 import com.example.tatangit.lautannusantara.R;
 import com.example.tatangit.lautannusantara.SignUp.Activity.Activity_Login;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -42,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback{
+public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback {
 //public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     Intent mIntent;
@@ -57,6 +55,9 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     View v;
 
 
+    private LatLngBounds bounds;
+    private LatLngBounds.Builder builder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,6 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mTitle = toolbar.findViewById(R.id.id_title_toolbar);
         mTitle.setText("Kelautan");
-
         interface_api = Utils.getSOService("p");
         messageItemLogin = ModelManager.getInstance(getApplicationContext()).getUser();
 
@@ -113,42 +113,45 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
         }
         SupportMapFragment mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
+
     }
 
 
     @Override
     public void onMapReady(final GoogleMap map) {
         mMap = map;
+        builder = new LatLngBounds.Builder();
+
         interface_api.cKordinat().enqueue(new Callback<ResponseKordinat>() {
             @Override
             public void onResponse(Call<ResponseKordinat> call, Response<ResponseKordinat> response) {
                 if (response.isSuccessful()) {
                     pDialog.dismiss();
-                    final List<MessageItemKordinat> lLogin = response.body().getMessage();
-                    Log.d("Tampilkan",""+response.body().toString());
-                    for (int i = 0; i < lLogin.size(); i++) {
+                    final List<MessageItemKordinat> messageItemKordinats = response.body().getMessage();
+                    for (int i = 0; i < messageItemKordinats.size(); i++) {
+
 
                         mMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude()))
+                                .position(new LatLng(Double.parseDouble(messageItemKordinats.get(i).getLatitude()), Double.parseDouble(messageItemKordinats.get(i).getLongitude()))
                                 )
                                 .icon(BitmapDescriptorFactory
-                                        .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                        .fromResource(R.drawable.ic_fish))
                                 .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lLogin.get(i).getLatitude()),Double.parseDouble(lLogin.get(i).getLongtitude())), 17));
+
                     }
                 } else {
                     pDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Gagal Untuk Menghubungkan Ke Server", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseKordinat> call, Throwable t) {
                 pDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Ups, Gagal Koneksi Ke Jaringan", Toast.LENGTH_SHORT).show();
             }
         });
-        mMap.animateCamera(CameraUpdateFactory.zoomOut());
+
         mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
     }
+
+
 }

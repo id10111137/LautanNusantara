@@ -2,17 +2,25 @@ package com.example.tatangit.lautannusantara.Library.Retrofit.Model;
 
 public class MessageItemLogin {
 	private String password;
+	private String id_user;
+	private String role;
+	private String username;
 
-	public MessageItemLogin(String noUser, String username, String password, String email) {
+	public MessageItemLogin(String id_user, String username, String password, String role) {
+		this.id_user = id_user;
 		this.password = password;
-		this.noUser = noUser;
-		this.email = email;
+		this.role = role;
 		this.username = username;
 	}
 
-	private String noUser;
-	private String email;
-	private String username;
+
+	public void setId_user(String id_user){
+		this.id_user = id_user;
+	}
+
+	public String getId_user(){
+		return id_user;
+	}
 
 	public void setPassword(String password){
 		this.password = password;
@@ -22,20 +30,12 @@ public class MessageItemLogin {
 		return password;
 	}
 
-	public void setNoUser(String noUser){
-		this.noUser = noUser;
+	public void setRole(String role){
+		this.role = role;
 	}
 
-	public String getNoUser(){
-		return noUser;
-	}
-
-	public void setEmail(String email){
-		this.email = email;
-	}
-
-	public String getEmail(){
-		return email;
+	public String getRole(){
+		return role;
 	}
 
 	public void setUsername(String username){
@@ -50,9 +50,10 @@ public class MessageItemLogin {
  	public String toString(){
 		return 
 			"MessageItemLogin{" +
-			"password = '" + password + '\'' + 
-			",noUser = '" + noUser + '\'' + 
-			",email = '" + email + '\'' + 
+					"id_user = '" + id_user + '\'' +
+
+					",password = '" + password + '\'' +
+			",role = '" + role + '\'' +
 			",username = '" + username + '\'' + 
 			"}";
 		}

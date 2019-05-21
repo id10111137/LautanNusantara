@@ -42,12 +42,6 @@
             android:hint="Confirm Password"
             android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/id_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
 
         <LinearLayout
             android:id="@+id/id_goSimpan"

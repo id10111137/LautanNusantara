@@ -47,8 +47,7 @@ public class Activity_Main extends AppCompatActivity {
     @BindView(R.id.id_nama)
     TextView id_nama;
 
-    @BindView(R.id.id_email)
-    TextView id_email;
+
 
 
 
@@ -133,7 +132,6 @@ public class Activity_Main extends AppCompatActivity {
 
     private void setProfil() {
         id_nama.setText("Hai, " + messageItemLogin.getUsername());
-        id_email.setText(messageItemLogin.getEmail());
     }
 
     @OnClick(R.id.id_calculator)

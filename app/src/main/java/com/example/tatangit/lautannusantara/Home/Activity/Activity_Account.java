@@ -114,7 +114,6 @@ public class Activity_Account extends AppCompatActivity {
     private void goSetProfil(){
         id_username_member.setText(messageItemLogin.getUsername());
         id_password_member.setText(messageItemLogin.getPassword());
-        id_email_member.setText(messageItemLogin.getEmail());
     }
 
 
@@ -129,18 +128,11 @@ public class Activity_Account extends AppCompatActivity {
         } else if (id_password_member.getText().toString().isEmpty()) {
             pDialog.dismiss();
             id_username_member.setError("Sepertinya Password Anda Belum Terisi");
-        } else if (id_email_member.getText().toString().isEmpty()) {
-            pDialog.dismiss();
-            id_email_member.setError("Sepertinya Email Anda Belum Terisi");
         }else{
-            Log.d("Tampilkan",
-                    "Nomor Member : "+messageItemLogin.getNoUser()+
-            " Username : "+id_username_member.getText().toString()+
-            " Password : "+id_password_member.getText().toString()+
-            " Email : "+id_email_member.getText().toString());
+
 
             pDialog.dismiss();
-            interface_api.cProfil(messageItemLogin.getNoUser(),id_username_member.getText().toString(),id_password_member.getText().toString(),id_email_member.getText().toString()).enqueue(new Callback<ResponseLogin>() {
+            interface_api.cProfil(messageItemLogin.getId_user(),id_username_member.getText().toString(),id_password_member.getText().toString()).enqueue(new Callback<ResponseLogin>() {
                 @Override
                 public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                     if (response.isSuccessful()) {
@@ -148,10 +140,10 @@ public class Activity_Account extends AppCompatActivity {
                         final List<MessageItemLogin> lLogin = response.body().getMessage();
                         for (int i = 0; i < lLogin.size(); i++) {
                             modelLogin = new MessageItemLogin(
-                                    lLogin.get(i).getNoUser(),
+                                    lLogin.get(i).getId_user(),
                                     lLogin.get(i).getUsername(),
                                     lLogin.get(i).getPassword(),
-                                    lLogin.get(i).getEmail());
+                                    lLogin.get(i).getRole());
                         }
 
                         ModelManager.getInstance(getApplicationContext()).UserLogin(modelLogin);

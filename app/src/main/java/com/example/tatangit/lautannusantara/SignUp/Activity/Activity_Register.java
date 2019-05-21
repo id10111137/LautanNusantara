@@ -35,8 +35,6 @@ public class Activity_Register extends AppCompatActivity {
     EditText id_password;
     @BindView(R.id.id_cpassword)
     EditText id_cpassword;
-    @BindView(R.id.id_email)
-    EditText id_email;
 
     Interface_Api interface_api;
 
@@ -72,15 +70,12 @@ public class Activity_Register extends AppCompatActivity {
         } else if (id_cpassword.getText().toString().isEmpty()) {
             pDialog.dismiss();
             id_cpassword.setError("Sepertinya Password Confirmation Belum Terisi");
-        } else if (id_email.getText().toString().isEmpty()) {
-            pDialog.dismiss();
-            id_email.setError("Sepertinya Email Belum Terisi");
-        } else if (!id_password.getText().toString().equalsIgnoreCase(id_cpassword.getText().toString())) {
+        }else if (!id_password.getText().toString().equalsIgnoreCase(id_cpassword.getText().toString())) {
             pDialog.dismiss();
             id_cpassword.setError("Sepertinya Password anda tidak sama");
         } else {
 
-            interface_api.RegisterMember(id_username.getText().toString(), id_password.getText().toString(), id_email.getText().toString()).enqueue(new Callback<ResponseRegister>() {
+            interface_api.RegisterMember(id_username.getText().toString(), id_password.getText().toString()).enqueue(new Callback<ResponseRegister>() {
                 @Override
                 public void onResponse(Call<ResponseRegister> call, Response<ResponseRegister> response) {
                     Log.d("Tampilkan", "" + response.message().toString());
@@ -115,6 +110,5 @@ public class Activity_Register extends AppCompatActivity {
         id_username.setText(null);
         id_password.setText(null);
         id_cpassword.setText(null);
-        id_email.setText(null);
     }
 }

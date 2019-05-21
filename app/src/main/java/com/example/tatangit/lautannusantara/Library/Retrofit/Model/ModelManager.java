@@ -28,25 +28,25 @@ public class ModelManager {
     public void UserLogin(MessageItemLogin modelUserItem) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LautanNusantara", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("noUser", modelUserItem.getNoUser());
+        editor.putString("id_user", modelUserItem.getId_user());
         editor.putString("username", modelUserItem.getUsername());
         editor.putString("password", modelUserItem.getPassword());
-        editor.putString("email", modelUserItem.getEmail());
+        editor.putString("role", modelUserItem.getRole());
         editor.apply();
     }
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LautanNusantara", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("noUser", null) != null;
+        return sharedPreferences.getString("id_user", null) != null;
     }
 
     public MessageItemLogin getUser() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LautanNusantara", Context.MODE_PRIVATE);
         return new MessageItemLogin(
-                sharedPreferences.getString("noUser", null),
+                sharedPreferences.getString("id_user", null),
                 sharedPreferences.getString("username", null),
                 sharedPreferences.getString("password", null),
-                sharedPreferences.getString("email", null));
+                sharedPreferences.getString("role", null));
 
     }
 

@@ -82,10 +82,10 @@ public class Activity_Login extends AppCompatActivity {
                         final List<MessageItemLogin> lLogin = response.body().getMessage();
                         for (int i = 0; i < lLogin.size(); i++) {
                             modelLogin = new MessageItemLogin(
-                                    lLogin.get(i).getNoUser(),
+                                    lLogin.get(i).getId_user(),
                                     lLogin.get(i).getUsername(),
                                     lLogin.get(i).getPassword(),
-                                    lLogin.get(i).getEmail());
+                                    lLogin.get(i).getRole());
                         }
 
                         ModelManager.getInstance(getApplicationContext()).UserLogin(modelLogin);

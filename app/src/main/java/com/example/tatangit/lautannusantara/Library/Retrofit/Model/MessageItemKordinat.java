@@ -1,24 +1,33 @@
 package com.example.tatangit.lautannusantara.Library.Retrofit.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MessageItemKordinat {
-	private String keterangan;
+
+	@SerializedName("jumlah_klorofil")
+	private String jumlahKlorofil;
+
+	@SerializedName("latitude")
 	private String latitude;
-	private String longtitude;
-	private String noKordinat;
 
-	public MessageItemKordinat(String noKordinat, String latitude, String longtitude, String keterangan) {
-		this.keterangan = keterangan;
-		this.latitude = latitude;
-		this.longtitude = longtitude;
-		this.noKordinat = noKordinat;
+	@SerializedName("id_klorofil")
+	private String idKlorofil;
+
+	@SerializedName("date_update")
+	private String dateUpdate;
+
+	@SerializedName("id_koordinat")
+	private String idKoordinat;
+
+	@SerializedName("longitude")
+	private String longitude;
+
+	public void setJumlahKlorofil(String jumlahKlorofil){
+		this.jumlahKlorofil = jumlahKlorofil;
 	}
 
-	public void setKeterangan(String keterangan){
-		this.keterangan = keterangan;
-	}
-
-	public String getKeterangan(){
-		return keterangan;
+	public String getJumlahKlorofil(){
+		return jumlahKlorofil;
 	}
 
 	public void setLatitude(String latitude){
@@ -29,30 +38,48 @@ public class MessageItemKordinat {
 		return latitude;
 	}
 
-	public void setLongtitude(String longtitude){
-		this.longtitude = longtitude;
+	public void setIdKlorofil(String idKlorofil){
+		this.idKlorofil = idKlorofil;
 	}
 
-	public String getLongtitude(){
-		return longtitude;
+	public String getIdKlorofil(){
+		return idKlorofil;
 	}
 
-	public void setNoKordinat(String noKordinat){
-		this.noKordinat = noKordinat;
+	public void setDateUpdate(String dateUpdate){
+		this.dateUpdate = dateUpdate;
 	}
 
-	public String getNoKordinat(){
-		return noKordinat;
+	public String getDateUpdate(){
+		return dateUpdate;
+	}
+
+	public void setIdKoordinat(String idKoordinat){
+		this.idKoordinat = idKoordinat;
+	}
+
+	public String getIdKoordinat(){
+		return idKoordinat;
+	}
+
+	public void setLongitude(String longitude){
+		this.longitude = longitude;
+	}
+
+	public String getLongitude(){
+		return longitude;
 	}
 
 	@Override
  	public String toString(){
 		return 
 			"MessageItemKordinat{" +
-			"keterangan = '" + keterangan + '\'' + 
+			"jumlah_klorofil = '" + jumlahKlorofil + '\'' + 
 			",latitude = '" + latitude + '\'' + 
-			",longtitude = '" + longtitude + '\'' + 
-			",noKordinat = '" + noKordinat + '\'' + 
+			",id_klorofil = '" + idKlorofil + '\'' + 
+			",date_update = '" + dateUpdate + '\'' + 
+			",id_koordinat = '" + idKoordinat + '\'' + 
+			",longitude = '" + longitude + '\'' + 
 			"}";
 		}
 }

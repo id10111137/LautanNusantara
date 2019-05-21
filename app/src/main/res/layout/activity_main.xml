@@ -47,13 +47,6 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/m_20dp" />
 
-            <TextView
-                android:id="@+id/id_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email@gmail.com"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/m_20dp" />
 
         </LinearLayout>
 

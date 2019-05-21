@@ -1,12 +1,19 @@
 package com.example.tatangit.lautannusantara.Library.Retrofit.Response;
 
-import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
-
 import java.util.List;
 
+import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
+import com.google.gson.annotations.SerializedName;
+
 public class ResponseKordinat{
+
+	@SerializedName("code")
 	private int code;
+
+	@SerializedName("message")
 	private List<MessageItemKordinat> message;
+
+	@SerializedName("status")
 	private String status;
 
 	public void setCode(int code){

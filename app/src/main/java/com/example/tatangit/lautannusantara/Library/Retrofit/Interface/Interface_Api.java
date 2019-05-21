@@ -21,8 +21,7 @@ public interface Interface_Api {
     @FormUrlEncoded
     Call<ResponseRegister> RegisterMember(
             @Field("username") String username,
-            @Field("password") String password,
-            @Field("email") String email
+            @Field("password") String password
     );
 
     @POST("User/Member_Login")
@@ -35,13 +34,12 @@ public interface Interface_Api {
     @PUT("User/Member_Update")
     @FormUrlEncoded
     Call<ResponseLogin> cProfil(
-            @Field("noUser") String noUser,
+            @Field("id_user") String id_user,
             @Field("username") String username,
-            @Field("password") String password,
-            @Field("email") String email
+            @Field("password") String password
     );
 
-    @GET("Kordinat/AmbilKordinat")
+    @GET("Kordinat/KordinatKlorofil")
     Call<ResponseKordinat> cKordinat();
 
     @GET("data/2.5/forecast/hourly")
