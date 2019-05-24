@@ -36,6 +36,7 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
 
     Context context;
     Interface_Api interface_api;
+    public String id_klorofil;
     public String id_temp_saat_inis;
     public String id_kedalaman_lauts;
     public String id_bawah_lauts;
@@ -65,6 +66,7 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
         View v = inflater.inflate(R.layout.custom_infowindow, null);
         final LatLng latLng = marker.getPosition();
 
+        TextView id_klorofil = (TextView) v.findViewById(R.id.id_klorofil);
         TextView tvLat = (TextView) v.findViewById(R.id.id_latitude);
         TextView tvLng = (TextView) v.findViewById(R.id.id_longtitude);
         final TextView id_temp_saat_ini = (TextView) v.findViewById(R.id.id_temp_saat_ini);
@@ -77,48 +79,56 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
         LinearLayout lyButton = (LinearLayout) v.findViewById(R.id.id_goDetail);
 
 
-        interface_api.cWeatherCurrent(Double.toString(latLng.latitude), Double.toString(latLng.longitude), "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseCurrent>() {
-            @Override
-            public void onResponse(Call<ResponseCurrent> call, Response<ResponseCurrent> response) {
-                if (response.code() == 200) {
+        if(latLng !=null){
 
-                   id_temp_saat_inis = ""+response.body().getMain().getTemp();
-                    id_kedalaman_lauts = ""+response.body().getMain().getGrndLevel();
-                    id_bawah_lauts= ""+response.body().getMain().getSeaLevel();
-                    id_tekanan_udaras = ""+response.body().getMain().getPressure();
-                    id_kecepatan_angins = ""+response.body().getMain().getGrndLevel();
-                    id_tempats = ""+response.body().getName();
+            interface_api.cWeatherCurrent(Double.toString(latLng.latitude), Double.toString(latLng.longitude), "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseCurrent>() {
+                @Override
+                public void onResponse(Call<ResponseCurrent> call, Response<ResponseCurrent> response) {
+                    if (response.code() == 200) {
 
-
-                    for(int i = 0; i<response.body().getWeather().size(); i++){
-                                id_icon_infowindowss =response.body().getWeather().get(i).getIcon();
-                            }
+                        id_temp_saat_inis = "" + response.body().getMain().getTemp();
+                        id_kedalaman_lauts = "" + response.body().getMain().getGrndLevel();
+                        id_bawah_lauts = "" + response.body().getMain().getSeaLevel();
+                        id_tekanan_udaras = "" + response.body().getMain().getPressure();
+                        id_kecepatan_angins = "" + response.body().getMain().getGrndLevel();
+                        id_tempats = "" + response.body().getName();
 
 
-                } else {
-                    Toast.makeText(context, "Upps, Gagal Untuk Mengambil data dari Weather", Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < response.body().getWeather().size(); i++) {
+                            id_icon_infowindowss = response.body().getWeather().get(i).getIcon();
+                        }
+
+
+                    } else {
+                        Toast.makeText(context, "Upps, Gagal Untuk Mengambil data dari Weather", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseCurrent> call, Throwable t) {
-                Toast.makeText(context, "Upps, Sepertinya Koneksi Internet Anda Kurang Bagus", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseCurrent> call, Throwable t) {
+                    Toast.makeText(context, "Upps, Sepertinya Koneksi Internet Anda Kurang Bagus", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
+
 
         maps.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 mIntent = new Intent(context, Activity_Detail.class);
                 mIntent.putExtra("title", "activity_kelautan");
-                mIntent.putExtra("Latitude",""+latLng.latitude);
-                mIntent.putExtra("Longtitude",""+latLng.longitude);
+                mIntent.putExtra("Latitude", "" + latLng.latitude);
+                mIntent.putExtra("Longtitude", "" + latLng.longitude);
                 mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(mIntent);
             }
         });
 
 
+
+        id_klorofil.setText(marker.getSnippet());
         id_temp_saat_ini.setText(id_temp_saat_inis);
         id_kedalaman_laut.setText(id_kedalaman_lauts);
         id_bawah_laut.setText(id_bawah_lauts);
@@ -126,10 +136,8 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
         id_kecepatan_angin.setText(id_kecepatan_angins);
         id_tempat.setText(id_tempats);
 
-        Log.d("Tampilkan",""+id_icon_infowindowss);
 
-
-        Picasso.get().load("http://openweathermap.org/img/w/"+id_icon_infowindowss+".png").placeholder(R.drawable.ic_noimage).fit().into(id_icon_infowindows, new com.squareup.picasso.Callback() {
+        Picasso.get().load("http://openweathermap.org/img/w/" + id_icon_infowindowss + ".png").placeholder(R.drawable.ic_noimage).fit().into(id_icon_infowindows, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
 
@@ -146,4 +154,6 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
         tvLng.setText("" + latLng.longitude);
         return v;
     }
+
+
 }

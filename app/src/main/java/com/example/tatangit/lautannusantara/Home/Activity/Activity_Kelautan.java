@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +18,6 @@ import com.example.tatangit.lautannusantara.Library.Retrofit.Response.ResponseKo
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils;
 import com.example.tatangit.lautannusantara.R;
 import com.example.tatangit.lautannusantara.SignUp.Activity.Activity_Login;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -40,13 +37,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback {
-//public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
+//public class Activity_Kelautan extends AppCompatActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+public class Activity_Kelautan extends AppCompatActivity implements
+        OnMapReadyCallback {
 
     Intent mIntent;
     SweetAlertDialog pDialog;
     Interface_Api interface_api;
-    MessageItemLogin modelLogin;
     Toolbar toolbar;
     TextView mTitle;
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
@@ -54,9 +51,7 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     GoogleMap mMap;
     View v;
 
-
-    private LatLngBounds bounds;
-    private LatLngBounds.Builder builder;
+    private Marker myMarker;
 
 
     @Override
@@ -120,38 +115,35 @@ public class Activity_Kelautan extends AppCompatActivity implements OnMapReadyCa
     @Override
     public void onMapReady(final GoogleMap map) {
         mMap = map;
-        builder = new LatLngBounds.Builder();
-
-        interface_api.cKordinat().enqueue(new Callback<ResponseKordinat>() {
+        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
-            public void onResponse(Call<ResponseKordinat> call, Response<ResponseKordinat> response) {
-                if (response.isSuccessful()) {
-                    pDialog.dismiss();
-                    final List<MessageItemKordinat> messageItemKordinats = response.body().getMessage();
-                    for (int i = 0; i < messageItemKordinats.size(); i++) {
-
-
-                        mMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(Double.parseDouble(messageItemKordinats.get(i).getLatitude()), Double.parseDouble(messageItemKordinats.get(i).getLongitude()))
-                                )
-                                .icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.ic_fish))
-                                .title("Belitung Provinsi").snippet("Indonesian, Belitung Provinsi"));
-
+            public void onMapLoaded() {
+                interface_api.cKordinat().enqueue(new Callback<ResponseKordinat>() {
+                    @Override
+                    public void onResponse(Call<ResponseKordinat> call, Response<ResponseKordinat> response) {
+                        if (response.isSuccessful()) {
+                            pDialog.dismiss();
+                            final List<MessageItemKordinat> messageItemKordinats = response.body().getMessage();
+                            for (int i = 0; i < messageItemKordinats.size(); i++) {
+                                myMarker = mMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(Double.parseDouble(messageItemKordinats.get(i).getLatitude()), Double.parseDouble(messageItemKordinats.get(i).getLongitude()))
+                                        )
+                                        .icon(BitmapDescriptorFactory
+                                                .fromResource(R.drawable.ic_fish))
+                                        .title("Belitung Provinsi").snippet(messageItemKordinats.get(i).getJumlahKlorofil()));
+                            }
+                        } else {
+                            pDialog.dismiss();
+                        }
                     }
-                } else {
-                    pDialog.dismiss();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseKordinat> call, Throwable t) {
-                pDialog.dismiss();
+                    @Override
+                    public void onFailure(Call<ResponseKordinat> call, Throwable t) {
+                        pDialog.dismiss();
+                    }
+                });
             }
         });
-
         mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
     }
-
-
 }
