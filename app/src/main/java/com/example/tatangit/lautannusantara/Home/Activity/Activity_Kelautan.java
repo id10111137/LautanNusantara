@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_InfoWindows;
+import com.example.tatangit.lautannusantara.Library.Notification.H_Notification;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
@@ -52,7 +53,7 @@ public class Activity_Kelautan extends AppCompatActivity implements
     View v;
 
     private Marker myMarker;
-
+    H_Notification h_notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +67,30 @@ public class Activity_Kelautan extends AppCompatActivity implements
         mTitle.setText("Kelautan");
         interface_api = Utils.getSOService("p");
         messageItemLogin = ModelManager.getInstance(getApplicationContext()).getUser();
+        h_notification = new H_Notification();
+
 
         id_icon_toolbar_start = toolbar.findViewById(R.id.id_icon_toolbar_start);
-        id_icon_toolbar_start.setImageDrawable(getApplication().getResources().getDrawable(R.drawable.ic_back));
+        id_icon_toolbar_start.setImageDrawable(getApplication().getResources().getDrawable(R.drawable.ic_info));
         id_icon_toolbar_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
-                finish();
+//                onBackPressed();
+//                finish();
+                mIntent = new Intent(getApplicationContext(), Activity_Account.class);
+                startActivity(mIntent);
             }
         });
 
         toolbar_iconView = toolbar.findViewById(R.id.id_icon_toolbar);
-        toolbar_iconView.setImageDrawable(getApplication().getResources().getDrawable(R.drawable.ic_reload));
+        toolbar_iconView.setImageDrawable(getApplication().getResources().getDrawable(R.drawable.ic_logout));
         toolbar_iconView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Activity_Kelautan.this, "Mohon Maaf Sedang Proses Deployment", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Activity_Kelautan.this, "Mohon Maaf Sedang Proses Deployment", Toast.LENGTH_SHORT).show();
+                h_notification.eNotif(getApplicationContext(),"Logout","Lautan Nusantara","Terima Kasih Telah Berkunjung");
+                ModelManager.getInstance(getApplicationContext()).LogOut();
+                finish();
             }
         });
 

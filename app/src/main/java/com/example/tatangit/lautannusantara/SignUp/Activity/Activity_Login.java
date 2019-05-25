@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tatangit.lautannusantara.Home.Activity.Activity_Kelautan;
 import com.example.tatangit.lautannusantara.Home.Activity.Activity_Main;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemLogin;
@@ -89,7 +90,7 @@ public class Activity_Login extends AppCompatActivity {
                         }
 
                         ModelManager.getInstance(getApplicationContext()).UserLogin(modelLogin);
-                        mIntent = new Intent(getApplicationContext(), Activity_Main.class);
+                        mIntent = new Intent(getApplicationContext(), Activity_Kelautan.class);
                         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(mIntent);
 

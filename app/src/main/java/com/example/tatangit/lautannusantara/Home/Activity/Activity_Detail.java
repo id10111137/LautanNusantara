@@ -105,6 +105,7 @@ public class Activity_Detail extends AppCompatActivity {
         interface_api.cWeatherHurly(getIntent().getStringExtra("Latitude"), getIntent().getStringExtra("Longtitude"), "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseHourly>() {
             @Override
             public void onResponse(Call<ResponseHourly> call, Response<ResponseHourly> response) {
+
                 if (response.code() == 200) {
                     final List<ListItemHourly> lItem = response.body().getList();
                     adapter_weatherHistory = new Adapter_Weather_History(lItem, getApplicationContext());
