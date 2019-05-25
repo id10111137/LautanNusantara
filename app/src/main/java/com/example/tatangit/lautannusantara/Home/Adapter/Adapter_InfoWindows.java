@@ -17,6 +17,7 @@ import com.example.tatangit.lautannusantara.Home.Activity.Activity_Detail;
 import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.ResponseCurrent;
 import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Current.WeatherItem;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
+import com.example.tatangit.lautannusantara.Library.Retrofit.Model.MessageItemKordinat;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils_Weather;
 import com.example.tatangit.lautannusantara.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +47,8 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
     public String id_icon_infowindowss;
     GoogleMap maps;
     Intent mIntent;
+
+    MessageItemKordinat messageItemKordinats;
 
 
     public Adapter_InfoWindows(Context context, GoogleMap maps) {
@@ -125,6 +128,8 @@ public class Adapter_InfoWindows implements GoogleMap.InfoWindowAdapter {
                 context.startActivity(mIntent);
             }
         });
+
+
 
 
 

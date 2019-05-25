@@ -10,6 +10,9 @@ public class City{
 	@SerializedName("coord")
 	private Coord coord;
 
+	@SerializedName("timezone")
+	private int timezone;
+
 	@SerializedName("name")
 	private String name;
 
@@ -30,6 +33,14 @@ public class City{
 
 	public Coord getCoord(){
 		return coord;
+	}
+
+	public void setTimezone(int timezone){
+		this.timezone = timezone;
+	}
+
+	public int getTimezone(){
+		return timezone;
 	}
 
 	public void setName(String name){
@@ -54,6 +65,7 @@ public class City{
 			"City{" + 
 			"country = '" + country + '\'' + 
 			",coord = '" + coord + '\'' + 
+			",timezone = '" + timezone + '\'' + 
 			",name = '" + name + '\'' + 
 			",id = '" + id + '\'' + 
 			"}";

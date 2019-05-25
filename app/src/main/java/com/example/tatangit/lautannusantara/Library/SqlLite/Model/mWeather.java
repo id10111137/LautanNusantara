@@ -14,21 +14,21 @@ public class mWeather {
     String grnd_level;
     Double temp_kf;
 
-    public mWeather(){}
-
-    public mWeather(int noWeather, String latitude, String longtitude, String tanggal, String temperature, String iconSet, String humidity, String pressure, String sea_level, String grnd_level, Double temp_kf) {
-        NoWeather = noWeather;
-        Latitude = latitude;
-        Longtitude = longtitude;
-        Tanggal = tanggal;
-        Temperature = temperature;
-        IconSet = iconSet;
-        this.humidity = humidity;
-        this.pressure = pressure;
-        this.sea_level = sea_level;
-        this.grnd_level = grnd_level;
-        this.temp_kf = temp_kf;
-    }
+//    public mWeather(){}
+//
+//    public mWeather(int noWeather, String latitude, String longtitude, String tanggal, String temperature, String iconSet, String humidity, String pressure, String sea_level, String grnd_level, Double temp_kf) {
+//        NoWeather = noWeather;
+//        Latitude = latitude;
+//        Longtitude = longtitude;
+//        Tanggal = tanggal;
+//        Temperature = temperature;
+//        IconSet = iconSet;
+//        this.humidity = humidity;
+//        this.pressure = pressure;
+//        this.sea_level = sea_level;
+//        this.grnd_level = grnd_level;
+//        this.temp_kf = temp_kf;
+//    }
 
 
     public int getNoWeather() {

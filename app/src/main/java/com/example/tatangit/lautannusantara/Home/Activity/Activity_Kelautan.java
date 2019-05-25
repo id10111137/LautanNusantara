@@ -19,6 +19,8 @@ import com.example.tatangit.lautannusantara.Library.Retrofit.Response.ResponseKo
 import com.example.tatangit.lautannusantara.Library.Retrofit.Utils.Utils;
 import com.example.tatangit.lautannusantara.R;
 import com.example.tatangit.lautannusantara.SignUp.Activity.Activity_Login;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -38,7 +40,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//public class Activity_Kelautan extends AppCompatActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 public class Activity_Kelautan extends AppCompatActivity implements
         OnMapReadyCallback {
 
@@ -52,8 +53,10 @@ public class Activity_Kelautan extends AppCompatActivity implements
     GoogleMap mMap;
     View v;
 
-    private Marker myMarker;
     H_Notification h_notification;
+    Marker marker;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,7 @@ public class Activity_Kelautan extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 //                Toast.makeText(Activity_Kelautan.this, "Mohon Maaf Sedang Proses Deployment", Toast.LENGTH_SHORT).show();
-                h_notification.eNotif(getApplicationContext(),"Logout","Lautan Nusantara","Terima Kasih Telah Berkunjung");
+                h_notification.eNotif(getApplicationContext(), "Logout", "Lautan Nusantara", "Terima Kasih Telah Berkunjung");
                 ModelManager.getInstance(getApplicationContext()).LogOut();
                 finish();
             }
@@ -117,12 +120,16 @@ public class Activity_Kelautan extends AppCompatActivity implements
         SupportMapFragment mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
 
+
+
     }
 
 
     @Override
     public void onMapReady(final GoogleMap map) {
         mMap = map;
+
+
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
@@ -133,18 +140,19 @@ public class Activity_Kelautan extends AppCompatActivity implements
                             pDialog.dismiss();
                             final List<MessageItemKordinat> messageItemKordinats = response.body().getMessage();
                             for (int i = 0; i < messageItemKordinats.size(); i++) {
-                                myMarker = mMap.addMarker(new MarkerOptions()
+                                marker =  mMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(Double.parseDouble(messageItemKordinats.get(i).getLatitude()), Double.parseDouble(messageItemKordinats.get(i).getLongitude()))
                                         )
                                         .icon(BitmapDescriptorFactory
                                                 .fromResource(R.drawable.ic_fish))
                                         .title("Belitung Provinsi").snippet(messageItemKordinats.get(i).getJumlahKlorofil()));
+
+
                             }
                         } else {
                             pDialog.dismiss();
                         }
                     }
-
                     @Override
                     public void onFailure(Call<ResponseKordinat> call, Throwable t) {
                         pDialog.dismiss();
@@ -152,6 +160,9 @@ public class Activity_Kelautan extends AppCompatActivity implements
                 });
             }
         });
+
+
         mMap.setInfoWindowAdapter(new Adapter_InfoWindows(getApplicationContext(), mMap));
+
     }
 }

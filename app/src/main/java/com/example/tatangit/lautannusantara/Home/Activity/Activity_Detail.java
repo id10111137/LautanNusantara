@@ -1,8 +1,13 @@
 package com.example.tatangit.lautannusantara.Home.Activity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tatangit.lautannusantara.Home.Adapter.Adapter_Weather_History;
+import com.example.tatangit.lautannusantara.Home.Adapter.ViewPagerAdapter;
+import com.example.tatangit.lautannusantara.Home.Fragment.Fragment_Cuaca;
+import com.example.tatangit.lautannusantara.Home.Fragment.Fragment_InfoLautan;
 import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ListItemHourly;
 import com.example.tatangit.lautannusantara.Library.OpenWeather.Model.Hourly.ResponseHourly;
 import com.example.tatangit.lautannusantara.Library.Retrofit.Interface.Interface_Api;
@@ -43,9 +51,12 @@ public class Activity_Detail extends AppCompatActivity {
     CircleImageView toolbar_iconView, id_icon_toolbar_start;
     MessageItemLogin messageItemLogin;
 
-    @BindView(R.id.id_lv_weather)
-    ListView id_lv_weather;
-    Adapter_Weather_History adapter_weatherHistory;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+
+    @BindView(R.id.tabs)
+    TabLayout tabs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,37 +101,27 @@ public class Activity_Detail extends AppCompatActivity {
         pDialog.setTitleText("Mohon Menunggu");
         pDialog.setCancelable(false);
 
-        /*
-            Session
-        */
-        try {
-            if (!ModelManager.getInstance(getApplicationContext()).isLoggedIn()) {
-                startActivity(new Intent(getApplicationContext(), Activity_Login.class));
-                finish();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        interface_api.cWeatherHurly(getIntent().getStringExtra("Latitude"), getIntent().getStringExtra("Longtitude"), "202aee9fbafda2e81aa448b7d79daf32").enqueue(new Callback<ResponseHourly>() {
-            @Override
-            public void onResponse(Call<ResponseHourly> call, Response<ResponseHourly> response) {
-
-                if (response.code() == 200) {
-                    final List<ListItemHourly> lItem = response.body().getList();
-                    adapter_weatherHistory = new Adapter_Weather_History(lItem, getApplicationContext());
-                    adapter_weatherHistory.notifyDataSetChanged();
-                    id_lv_weather.setAdapter(adapter_weatherHistory);
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Upps, Gagal Untuk Mengambil data dari Weather", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseHourly> call, Throwable t) {
-                Log.d("Tampilkan", "" + t.toString());
-            }
-        });
+        setupViewPager(viewPager);
+        tabs.setupWithViewPager(viewPager);
     }
+
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new Fragment_Cuaca(), "Cuaca");
+        adapter.addFragment(new Fragment_InfoLautan(), "History Cuaca");
+        viewPager.setAdapter(adapter);
+    }
+
+
+    public String Lat() {
+        return getIntent().getStringExtra("Latitude");
+    }
+
+    public String Lang() {
+        return getIntent().getStringExtra("Longtitude");
+    }
+
+
 }

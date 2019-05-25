@@ -8,6 +8,9 @@ public class ListItemHourly {
 	@SerializedName("dt")
 	private int dt;
 
+	@SerializedName("rain")
+	private Rain rain;
+
 	@SerializedName("dt_txt")
 	private String dtTxt;
 
@@ -32,6 +35,14 @@ public class ListItemHourly {
 
 	public int getDt(){
 		return dt;
+	}
+
+	public void setRain(Rain rain){
+		this.rain = rain;
+	}
+
+	public Rain getRain(){
+		return rain;
 	}
 
 	public void setDtTxt(String dtTxt){
@@ -87,6 +98,7 @@ public class ListItemHourly {
 		return 
 			"ListItemHourly{" +
 			"dt = '" + dt + '\'' + 
+			",rain = '" + rain + '\'' + 
 			",dt_txt = '" + dtTxt + '\'' + 
 			",weather = '" + weather + '\'' + 
 			",main = '" + main + '\'' + 

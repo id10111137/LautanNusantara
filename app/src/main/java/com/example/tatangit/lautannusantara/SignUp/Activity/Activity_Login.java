@@ -53,7 +53,7 @@ public class Activity_Login extends AppCompatActivity {
         pDialog.setCancelable(false);
 
         if (ModelManager.getInstance(getApplicationContext()).isLoggedIn()) {
-            startActivity(new Intent(getApplicationContext(), Activity_Main.class));
+            startActivity(new Intent(getApplicationContext(), Activity_Kelautan.class));
             finish();
         }
 
@@ -103,7 +103,6 @@ public class Activity_Login extends AppCompatActivity {
             @Override
             public void onFailure (Call < ResponseLogin > call, Throwable t){
                 pDialog.dismiss();
-                Log.d("Tampilkan", "" + t.toString());
                 Toast.makeText(Activity_Login.this, "Upps,Sepertinya Jaringan Internet anda bermasalah", Toast.LENGTH_SHORT).show();
 
             }

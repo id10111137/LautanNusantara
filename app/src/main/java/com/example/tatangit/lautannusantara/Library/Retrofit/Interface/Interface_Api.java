@@ -42,7 +42,7 @@ public interface Interface_Api {
     @GET("Kordinat/KordinatKlorofil")
     Call<ResponseKordinat> cKordinat();
 
-    @GET("data/2.5/forecast/hourly")
+    @GET("data/2.5/forecast")
     Call<ResponseHourly> cWeatherHurly(@Query("lat") String lat,
                                        @Query("lon") String lon,
                                        @Query("APPID") String appid);
@@ -51,7 +51,4 @@ public interface Interface_Api {
     Call<ResponseCurrent> cWeatherCurrent(@Query("lat") String lat,
                                           @Query("lon") String lon,
                                           @Query("APPID") String appid);
-
-
-
 }
